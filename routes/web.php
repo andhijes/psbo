@@ -1,5 +1,6 @@
 <?php
 
+use App\Notifications\TutorialPublished;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,6 +20,16 @@ Route::get('/', function () {
     return view('index');
 });
 
+//all user
+Route::get('/video', function() {
+$requirement = App\requirement::latest()->first();
+foreach (App\Userinfo::all() as $user) {
+  if($user->getAttribute('faculty') == $requirement->getAttribute('faculty')) {
+    $user->notify(new TutorialPublished($user));
+  }
+}
+});
+
 Route::get('login', function () {
     return view('login');
 });
@@ -33,8 +44,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::prefix('admin')->group(function(){
     Route::get('/profile', 'AdminController@profile')->name('admin.profile');
-    Route::patch('/profile', 'AdminController@update')->name('admin.update'); 
-    Route::post('/profile', 'AdminController@changePassword')->name('admin.password'); 
+    Route::patch('/profile', 'AdminController@update')->name('admin.update');
+    Route::post('/profile', 'AdminController@changePassword')->name('admin.password');
     Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
     Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
     Route::get('/addScholarship', 'ScholarshipController@create')->name('addScholarship.create');
