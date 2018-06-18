@@ -2,6 +2,7 @@
 
 use App\Notifications\TutorialPublished;
 use Illuminate\Support\Collection;
+use App\Userinfo;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,26 +23,23 @@ Route::get('/', function () {
 });
 
 //emaul all user with conditions
+//ini buat user yang baru ngisi ipk dll, tempel di tombol update profile user
 Route::get('/video', function() {
-//$requirement = App\requirement::latest()->first();
+$requirement = App\requirement::latest()->first();
 $mytime = Carbon\Carbon::now();
 $mytime = Carbon\Carbon::parse($mytime);
 $mytime = $mytime->toDateString();
 
-// $q = App\requirement::whereDate($mytime, '>', $requirement->getAttribute('deadline'));
-// if($q) {
-//   echo $requirement->getAttribute('id');
-// }
+$user = App\Userinfo::latest()->first();
+$a = strpos($requirement->getAttribute('program'), $user->getAttribute('program'));
+dd($a);
 
-foreach (App\requirement::all() as $requirement) {
-  $deadline = $requirement->getAttribute('deadline');
-//  $deadline = Carbon\Carbon::parse($deadline);
-//  $q = App\requirement::where($mytime, '=', $deadline);
-//  dd($q);
-  if(Carbon\Carbon::parse($deadline)->gt($mytime)) {
-      echo $requirement->getAttribute('id');
-  }
-}
+// foreach (App\requirement::all() as $requirement) {
+//   $deadline = $requirement->getAttribute('deadline');
+//   if(Carbon\Carbon::parse($deadline)->gt($mytime)) {
+//       echo $requirement->getAttribute('id');
+//   }
+// }
 // foreach (App\Userinfo::all() as $user) {
 //   if($user->getAttribute('faculty') == $requirement->getAttribute('faculty') and
 //   $user->getAttribute('gda') >= $requirement->getAttribute('gda') and

@@ -16,7 +16,7 @@
             <br />
             <form class="form-horizontal form-label-left" action="{{ route('addScholarship.store') }}" method="post"  enctype="multipart/form-data">
                     {{ csrf_field() }}
-                    
+
                     <div class="form-group">
                         <label class="control-label col-md-2">Poster Beasiswa
                         </label>
@@ -35,7 +35,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-md-2">Perusahaan 
+                        <label class="control-label col-md-2">Perusahaan
                           <span class="required">*</span>
                         </label>
                         <div class="col-md-9">
@@ -45,21 +45,21 @@
 
 
                     <div class="form-group">
-                      <label class="control-label col-md-2">Program 
+                      <label class="control-label col-md-2">Program
                         <span class="required">*</span>
                       </label>
                       <div class="col-md-9">
                           <div class="form-check form-check-inline">
                               <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="D3" name="d3">
                               <label class="form-check-label" for="inlineCheckbox1">D3</label>
-                             
+
                               <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="S1" name="s1">
                               <label class="form-check-label" for="inlineCheckbox1">S1</label>
 
                               <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="S2" name="s2">
                               <label class="form-check-label" for="inlineCheckbox1">S2</label>
 
-                              
+
                           </div>
                       </div>
                     </div>
@@ -71,7 +71,7 @@
                       <input type="text" class="form-control" name="semester" placeholder="1-2" required="required">
                       </div>
                    </div>
-        
+
                   <div class="form-group">
                     <label class="control-label col-md-2">Fakultas </label>
                     <div class="col-md-9">
@@ -87,7 +87,7 @@
                   </div>
 
                   <div class="form-group">
-                    <label class="control-label col-md-2">Batas Pendaftaran 
+                    <label class="control-label col-md-2">Batas Pendaftaran
                       <span class="required">*</span>
                     </label>
                     <div class="col-md-9">
@@ -99,10 +99,10 @@
                         format: 'dd-mm-yyyy',
                         todayHighlight:'TRUE',
                         autoclose: true
-                      });    
+                      });
                     </script>
                   </div>
-                  
+
 
 
                     <div class="control-group">
@@ -111,17 +111,17 @@
                         <select class="tags form-control select2-multi" tabindex="-1" multiple="multiple" name="tags[]">
                           @foreach ($tags as $tag)
                             <option value="{{ $tag->id }}">{{ $tag->name }}</option>
-                          @endforeach 
+                          @endforeach
                         </select>
                         <div id="suggestions-container" style="position: relative; float: left; width: 250px; margin: 10px;"></div>
                       </div>
                     </div>
                   {{--  </div>  --}}
-                  
 
-                  
+
+
                   <div class="form-group">
-                      
+
                   <div class="item form-group">
                     <label class="control-label col-md-2" for="textarea">Deskripsi <span class="required">*</span>
                     </label>
@@ -130,15 +130,15 @@
                     </div>
                   </div>
                  </div>
-              
+
                     <div class="form-group">
                         <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
                         <button type="submit" class="btn btn-success">Submit</button>
                         </div>
                     </div>
 
-                    
-                    </form>       
+
+                    </form>
         </div>
     </div>
 
