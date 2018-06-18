@@ -1,6 +1,7 @@
 <?php
 
 use App\Notifications\TutorialPublished;
+use Illuminate\Support\Collection;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,14 +21,35 @@ Route::get('/', function () {
     return view('index');
 });
 
-//all user
+//emaul all user with conditions
 Route::get('/video', function() {
-$requirement = App\requirement::latest()->first();
-foreach (App\Userinfo::all() as $user) {
-  if($user->getAttribute('faculty') == $requirement->getAttribute('faculty')) {
-    $user->notify(new TutorialPublished($user));
+//$requirement = App\requirement::latest()->first();
+$mytime = Carbon\Carbon::now();
+$mytime = Carbon\Carbon::parse($mytime);
+$mytime = $mytime->toDateString();
+
+// $q = App\requirement::whereDate($mytime, '>', $requirement->getAttribute('deadline'));
+// if($q) {
+//   echo $requirement->getAttribute('id');
+// }
+
+foreach (App\requirement::all() as $requirement) {
+  $deadline = $requirement->getAttribute('deadline');
+//  $deadline = Carbon\Carbon::parse($deadline);
+//  $q = App\requirement::where($mytime, '=', $deadline);
+//  dd($q);
+  if(Carbon\Carbon::parse($deadline)->gt($mytime)) {
+      echo $requirement->getAttribute('id');
   }
 }
+// foreach (App\Userinfo::all() as $user) {
+//   if($user->getAttribute('faculty') == $requirement->getAttribute('faculty') and
+//   $user->getAttribute('gda') >= $requirement->getAttribute('gda') and
+//   $user->getAttribute('semester') == $requirement->getAttribute('semester') and
+//   $user->getAttribute('program') == $requirement->getAttribute('program')) {
+//     $user->notify(new TutorialPublished($user));
+//   }
+// }
 });
 
 Route::get('login', function () {
