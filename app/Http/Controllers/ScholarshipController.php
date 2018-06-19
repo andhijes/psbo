@@ -94,6 +94,8 @@ class ScholarshipController extends Controller
             $user->notify(new TutorialPublished($user));
           }
         }
+
+        Session::put('key', $request->input('name'));
         //sampe sini
 
         session()->flash('success', 'Scholarship succesful added!');

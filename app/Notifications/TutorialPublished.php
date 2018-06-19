@@ -6,6 +6,10 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use App\Http\Controllers\ScholarshipController;
+use Illuminate\Http\Request;
+use App\scholarship;
+use App\requirement;
 
 class TutorialPublished extends Notification
 {
@@ -19,7 +23,7 @@ class TutorialPublished extends Notification
      */
     public function __construct($tutorial)
     {
-        $this->tuto=$tutorial;
+        $this->tuto=$scholarships;
     }
 
     /**
@@ -42,9 +46,10 @@ class TutorialPublished extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->subject('Beasiswa Yang Cocok Untukmu Telah Hadir!')
+                    ->line($this->tuto->name)
+                    ->action('Masuk ke website', url('/'))
+                    ->line('Semoga harimu menyenangkan!');
     }
 
     /**
