@@ -10,6 +10,8 @@ use App\Http\Controllers\ScholarshipController;
 use Illuminate\Http\Request;
 use App\scholarship;
 use App\requirement;
+use Session;
+use App\Http\Controllers\Controller;
 
 class TutorialPublished extends Notification
 {
@@ -45,9 +47,10 @@ class TutorialPublished extends Notification
      */
     public function toMail($notifiable)
     {
+        $value = Session::get('nama');
         return (new MailMessage)
                     ->subject('Beasiswa Yang Cocok Untukmu Telah Hadir!')
-                    ->line($this->tuto->name)
+                    ->line('Jangan lewatkan kesempatanmu mendaftar beasiswa "' .$value. '", ayo cek sekarang!')
                     ->action('Masuk ke website', url('/'))
                     ->line('Semoga harimu menyenangkan!');
     }

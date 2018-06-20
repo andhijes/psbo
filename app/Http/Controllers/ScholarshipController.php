@@ -16,7 +16,7 @@ use Carbon\Carbon;
 use App\Notifications\TutorialPublished;
 use Illuminate\Support\Collection;
 use App\Userinfo;
-
+session()->regenerate();
 error_reporting(0);
 
 class ScholarshipController extends Controller
@@ -85,17 +85,19 @@ class ScholarshipController extends Controller
         // $scholarships = scholarship::where('name', $nama)->orderBy('created_at','desc')->first();
 
         //kode jopan ngirim notif email ke semua user yg memenuhi syarat
+        $meong = $request->input('name');
         foreach (Userinfo::all() as $user) {
+          $aa = $user->getAttribute('name');
           $a = strpos($program, $user->getAttribute('program'));
           if($user->getAttribute('faculty') == $request->input('faculty') and
           $user->getAttribute('gda') >= $request->input('gda') and
           $user->getAttribute('semester') == $request->input('semester') and
           $a >= 0) {
+            $request->session()->put('namaa', $aa);
+            $request->session()->put('nama', $meong);
             $user->notify(new TutorialPublished($user));
           }
         }
-
-        Session::put('key', $request->input('name'));
         //sampe sini
 
         session()->flash('success', 'Scholarship succesful added!');
