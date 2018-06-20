@@ -9,7 +9,7 @@
 @section('content')
     <div class="x_panel">
         <div class="x_title">
-            <h2>Tambah Beasiswa</h2>
+            <h2>Add Scholarship</h2>
             <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -18,7 +18,7 @@
                     {{ csrf_field() }}
 
                     <div class="form-group">
-                        <label class="control-label col-md-2">Poster Beasiswa
+                        <label class="control-label col-md-2">Scholarship Image
                         </label>
                         <div class="col-md-4">
                         {{--  <input type="file" class="form-control" name="name" placeholder="Nama Beasiswa" class="form-control col-md-9 col-xs-12">  --}}
@@ -27,7 +27,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-md-2">Nama Beasiswa
+                        <label class="control-label col-md-2">Scholarship Name
                           <span class="required">*</span>
                         </label>
                         <div class="col-md-9">
@@ -35,7 +35,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-md-2">Perusahaan
+                        <label class="control-label col-md-2">Company
                           <span class="required">*</span>
                         </label>
                         <div class="col-md-9">
@@ -73,21 +73,21 @@
                    </div>
 
                   <div class="form-group">
-                    <label class="control-label col-md-2">Fakultas </label>
+                    <label class="control-label col-md-2">Faculty </label>
                     <div class="col-md-9">
                     <input type="text" class="form-control" name="faculty" placeholder="FMIPA, FATETA" required="required">
                     </div>
                   </div>
 
                   <div class="form-group">
-                    <label class="control-label col-md-2">Minimum IPK</label>
+                    <label class="control-label col-md-2">Minimum GPA</label>
                     <div class="col-md-9">
                     <input type="text" class="form-control" name="gda" placeholder="2.7" required="required">
                     </div>
                   </div>
 
                   <div class="form-group">
-                    <label class="control-label col-md-2">Batas Pendaftaran
+                    <label class="control-label col-md-2">Registration Limit
                       <span class="required">*</span>
                     </label>
                     <div class="col-md-9">
